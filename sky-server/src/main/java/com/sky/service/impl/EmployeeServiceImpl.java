@@ -13,8 +13,10 @@ import com.sky.entity.Employee;
 import com.sky.exception.AccountLockedException;
 import com.sky.exception.AccountNotFoundException;
 import com.sky.exception.PasswordErrorException;
+import com.sky.mapper.CategoryMapper;
 import com.sky.mapper.EmployeeMapper;
 import com.sky.result.PageResult;
+import com.sky.service.CategoryService;
 import com.sky.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeMapper employeeMapper;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     /**
      * 员工登录
@@ -146,6 +152,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param employeeDTO
      * @return
      */
+    @Override
     public void edit(EmployeeDTO employeeDTO){
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
